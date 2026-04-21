@@ -6,7 +6,7 @@ create table if not exists knowledge_chunks (
   id          bigserial primary key,
   content     text        not null,
   source_file text        not null,
-  embedding   vector(1536),
+  embedding   vector(3072),
   metadata    jsonb       default '{}'
 );
 
@@ -18,7 +18,7 @@ create index if not exists knowledge_chunks_embedding_idx
 
 -- Función de búsqueda semántica
 create or replace function match_chunks(
-  query_embedding vector(1536),
+  query_embedding vector(3072),
   match_threshold float default 0.65,
   match_count     int   default 4
 )

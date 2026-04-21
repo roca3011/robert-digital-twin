@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import OpenAI from 'openai';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 import { readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
 
@@ -17,7 +17,7 @@ function loadEnv() {
       if (!process.env[key]) process.env[key] = value;
     }
   } catch {
-    // .env.local no existe, continúa con variables de entorno del sistema
+    // .env.local no existe, continúa con variables del sistema
   }
 }
 
@@ -25,12 +25,10 @@ loadEnv();
 
 const supabase = createClient(
   process.env.SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_KEY! // service key para escritura
+  process.env.SUPABASE_SERVICE_KEY!
 );
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-
-// Chunking por párrafos — mantiene coherencia semántica vs chunking por tokens
+// Chunking por párrafos — mantiene coherencia semántica
 function chunkText(text: string): string[] {
   const paragraphs = text.split(/\n\n+/);
   const chunks: string[] = [];
@@ -38,7 +36,7 @@ function chunkText(text: string): string[] {
 
   for (const para of paragraphs) {
     const trimmed = para.trim();
-    if (trimmed.length < 60) continue; // descarta títulos y líneas vacías
+    if (trimmed.length < 60) continue;
 
     if ((current + '\n\n' + trimmed).length > 800) {
       if (current) chunks.push(current.trim());
@@ -53,11 +51,16 @@ function chunkText(text: string): string[] {
 }
 
 async function embedTexts(texts: string[]): Promise<number[][]> {
-  const response = await openai.embeddings.create({
-    model: 'text-embedding-3-small', // 1536 dims, $0.02/M tokens
-    input: texts,
-  });
-  return response.data.map((d) => d.embedding);
+  const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
+  // text-embedding-004: 768 dims, gratuito en free tier
+  const model = genAI.getGenerativeModel({ model: 'gemini-embedding-001' });
+
+  const embeddings: number[][] = [];
+  for (const text of texts) {
+    const result = await model.embedContent(text);
+    embeddings.push(result.embedding.values);
+  }
+  return embeddings;
 }
 
 async function ingestFile(filePath: string, fileName: string): Promise<number> {
@@ -69,7 +72,7 @@ async function ingestFile(filePath: string, fileName: string): Promise<number> {
     return 0;
   }
 
-  // Borra chunks anteriores del mismo archivo — permite re-indexar sin duplicados
+  // Borra chunks anteriores — permite re-indexar sin duplicados
   const { error: deleteError } = await supabase
     .from('knowledge_chunks')
     .delete()
@@ -77,7 +80,6 @@ async function ingestFile(filePath: string, fileName: string): Promise<number> {
 
   if (deleteError) throw new Error(`Error borrando chunks de ${fileName}: ${deleteError.message}`);
 
-  // Genera embeddings en batch (máx 2048 inputs por llamada OpenAI)
   const embeddings = await embedTexts(chunks);
 
   const rows = chunks.map((content, i) => ({
@@ -97,8 +99,7 @@ async function ingestFile(filePath: string, fileName: string): Promise<number> {
 async function main() {
   console.log('\nIniciando ingesta de knowledge base...\n');
 
-  // Validar variables de entorno
-  const required = ['SUPABASE_URL', 'SUPABASE_SERVICE_KEY', 'OPENAI_API_KEY'];
+  const required = ['SUPABASE_URL', 'SUPABASE_SERVICE_KEY', 'GEMINI_API_KEY'];
   const missing = required.filter((k) => !process.env[k]);
   if (missing.length > 0) {
     console.error(`❌ Variables faltantes en .env.local: ${missing.join(', ')}`);

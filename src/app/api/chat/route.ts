@@ -1,19 +1,15 @@
 import { NextRequest } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
-import OpenAI from 'openai';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { checkRateLimit } from '@/lib/rate-limit';
 
-// Clientes inicializados dentro del handler para evitar errores en build
-// (las env vars no existen en build time de Vercel hasta el primer request)
 function getClients() {
   const supabase = createClient(
     process.env.SUPABASE_URL!,
     process.env.SUPABASE_SERVICE_KEY!
   );
-  const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
   const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
-  return { supabase, openai, genAI };
+  return { supabase, genAI };
 }
 
 const SYSTEM_PROMPT = `Eres Robert Carvajal Franco, Ingeniero Java Senior con 7+ años de experiencia.
@@ -29,8 +25,10 @@ Contexto de mi perfil:
 
 type Message = { role: 'user' | 'assistant'; content: string };
 
+const LLM_MODEL = 'gemma-3-4b-it';
+
 export async function POST(req: NextRequest) {
-  const { supabase, openai, genAI } = getClients();
+  const { supabase, genAI } = getClients();
 
   // a. Extraer IP
   const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? '127.0.0.1';
@@ -51,12 +49,10 @@ export async function POST(req: NextRequest) {
   // d. Última pregunta del usuario
   const lastMessage = messages.at(-1)?.content ?? '';
 
-  // e. Embedding de la pregunta
-  const embeddingRes = await openai.embeddings.create({
-    model: 'text-embedding-3-small',
-    input: lastMessage,
-  });
-  const queryEmbedding = embeddingRes.data[0].embedding;
+  // e. Embedding con gemini-embedding-001 (3072 dims, gratuito)
+  const embeddingModel = genAI.getGenerativeModel({ model: 'gemini-embedding-001' });
+  const embeddingRes = await embeddingModel.embedContent(lastMessage);
+  const queryEmbedding = embeddingRes.embedding.values;
 
   // f. Búsqueda semántica en pgvector
   const { data: chunks } = await supabase.rpc('match_chunks', {
@@ -69,7 +65,7 @@ export async function POST(req: NextRequest) {
     ?.map((c) => c.content)
     .join('\n\n---\n\n') ?? '';
 
-  // g. Log de la query — fire and forget (no bloquea la respuesta)
+  // g. Log — fire and forget
   const ipHash = Buffer.from(ip).toString('base64');
   supabase.from('query_log').insert({
     ip_hash: ipHash,
@@ -77,22 +73,22 @@ export async function POST(req: NextRequest) {
     chunks_found: chunks?.length ?? 0,
   }).then();
 
-  // h+i. System prompt con contexto RAG inyectado
+  // h+i. System prompt inyectado como primer mensaje del historial
+  // (gemma no soporta systemInstruction, pero todos los modelos soportan este patrón)
   const systemWithContext = SYSTEM_PROMPT.replace('[CONTEXT]', contextText || '(sin contexto adicional)');
 
-  // j. Gemini 2.0 Flash con streaming
-  const model = genAI.getGenerativeModel({
-    model: 'gemini-2.0-flash',
-    systemInstruction: systemWithContext,
-  });
+  const systemTurn = [
+    { role: 'user' as const,  parts: [{ text: systemWithContext }] },
+    { role: 'model' as const, parts: [{ text: 'Entendido. Soy Robert Carvajal Franco y responderé preguntas sobre mi perfil profesional.' }] },
+  ];
 
-  // Historial en formato Gemini (role: user/model)
-  const history = messages.slice(0, -1).map((m) => ({
-    role: m.role === 'assistant' ? 'model' : 'user',
+  const conversationHistory = messages.slice(0, -1).map((m) => ({
+    role: m.role === 'assistant' ? 'model' as const : 'user' as const,
     parts: [{ text: m.content }],
   }));
 
-  const chat = model.startChat({ history });
+  const model = genAI.getGenerativeModel({ model: LLM_MODEL });
+  const chat = model.startChat({ history: [...systemTurn, ...conversationHistory] });
   const result = await chat.sendMessageStream(lastMessage);
 
   // k. ReadableStream texto plano

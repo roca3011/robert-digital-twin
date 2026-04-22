@@ -63,6 +63,17 @@ export default function Home() {
           return updated;
         });
       }
+
+      if (!accumulated) {
+        setMessages((prev) => {
+          const updated = [...prev];
+          updated[updated.length - 1] = {
+            role: 'assistant',
+            content: 'No pude generar una respuesta en este momento. Inténtalo de nuevo en unos segundos.',
+          };
+          return updated;
+        });
+      }
     } catch {
       setMessages((prev) => {
         const updated = [...prev];

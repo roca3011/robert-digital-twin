@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
   // f. Búsqueda semántica en pgvector
   const { data: chunks } = await supabase.rpc('match_chunks', {
     query_embedding: queryEmbedding,
-    match_threshold: 0.65,
+    match_threshold: 0.50,
     match_count: 4,
   });
 

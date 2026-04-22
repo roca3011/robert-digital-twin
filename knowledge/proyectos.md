@@ -11,12 +11,24 @@
 - Latencia: operaciones de wallet deben ser sub-100ms en el percentil 99
 - Consistencia: transacciones distribuidas entre microservicios con garantías ACID donde el negocio lo requiere
 
-**Decisiones técnicas destacadas**:
+**Mi contribución destacada**:
+- Integración del método de pago ACH en la wallet de los parques de atracción: implementé los servicios REST que se comunican con el proveedor ACH y habilitan la visualización del método de pago en la billetera del usuario
+- Testing integral: pruebas unitarias, de integración y funcionales; apoyo en pruebas de performance para validar SLAs
+- Soporte en cambios de frontend con Angular y JavaScript, incluyendo pruebas unitarias
+
+**Decisiones técnicas del equipo**:
 - Clean Architecture para aislar el dominio de wallet de los detalles de infraestructura AWS
 - DynamoDB para operaciones de lectura intensiva con single-table design
 - ECS + Docker para deployment sin estado de los servicios, escala horizontal automática
 
-**Stack**: Java 21, Spring Boot 3, AWS (EC2, ECS, S3, DynamoDB SDK v2, RDS), GitHub Actions, Docker
+**Stack**: Java 21, Spring Boot 3, AWS (EC2, ECS, S3, DynamoDB SDK v2, RDS), GitHub Actions, Docker, Angular, JavaScript
+
+**Por qué soy valioso en este proyecto**:
+Fui responsable de integrar ACH — un método de pago bancario real — en un sistema que maneja millones de transacciones diarias. Eso requirió entender el negocio de pagos, diseñar contratos REST robustos y garantizar cobertura completa de pruebas en un sistema crítico. Trabajé en inglés con el cliente Disney en todas las instancias del proceso.
+
+**Reto técnico más difícil / Toughest technical challenge**:
+Garantizar consistencia entre el servicio ACH externo y la wallet interna en un sistema distribuido de alta concurrencia, asegurando que los estados de pago se reflejen correctamente sin duplicados ni pérdidas, incluso ante fallos parciales.
+In English: My toughest challenge was ensuring consistency between the external ACH provider and the internal wallet in a high-concurrency distributed system — guaranteeing payment states were reflected correctly with no duplicates or losses, even under partial failures.
 
 ---
 
@@ -40,6 +52,12 @@
 
 **Stack**: Java 17, Spring Boot 3, Spring Cloud, Apache Kafka, DDD, Feign Client, Azure DevOps, SonarQube, Kubernetes
 
+**Por qué soy valioso en este proyecto**:
+Pasé de senior developer a technical leader en el mismo proyecto — lo que significa que entregué resultados técnicos y además fui capaz de diseñar la arquitectura completa y guiar al equipo. El sistema reemplazó procesos manuales del banco y redujo el tiempo de emisión de póliza de días a minutos.
+
+**Decisión técnica más difícil**:
+Elegir Kafka sobre RabbitMQ fue debatido en el equipo. Mi argumento fue la durabilidad de mensajes y la capacidad de replay, que en un contexto de auditoría regulatoria bancaria no era opcional. También defender DDD sobre un CRUD simple cuando el equipo de negocio tenía prisa — convencí mostrando cómo un modelo anémico generaría deuda técnica insostenible en 6 meses.
+
 ---
 
 ## Migración Java 11 → 21 con ZGC Generational (proyecto interno)
@@ -53,24 +71,9 @@
 
 **Resultado**: GC pauses < 1ms en el percentil 99. El batch nocturno que tardaba 4 horas se redujo a 2.5 horas por la eliminación de pause times y mejor uso de hilos virtuales (Virtual Threads Java 21).
 
----
-
-## AquaAccess / InkoSwim — SaaS propio para complejos acuáticos (Colombia)
-
-**Contexto**: Detecté un problema real: los complejos acuáticos en Colombia (piscinas públicas, clubes) no tienen sistema de gestión digital. Control de acceso en papel, cobro manual, sin métricas.
-
-**Lo que construí**:
-Sistema SaaS con 3 tiers:
-1. **Backend API**: Spring Boot + PostgreSQL para gestión de miembros, accesos, pagos
-2. **Dashboard admin**: para gerentes del complejo (reportes, control de membresías)
-3. **App de acceso**: integración con torniquetes físicos para control de entrada
-
-**Particularidades del mercado colombiano que diseñé**:
-- Integración con WhatsApp Business API para notificaciones (Colombia es WhatsApp-first)
-- Crédito/fiado como método de pago (común en Colombia) con gestión de deuda
-- Cumplimiento Ley Emiliani (Colombia exige acceso a piscinas para personas con discapacidad)
-
-**Estado actual**: Validado con 2 complejos acuáticos en Colombia como beta. Modelo de negocio SaaS por mensualidad por complejo.
+**Por qué es relevante para un recruiter / Why this matters to a recruiter**:
+Este proyecto demuestra que no solo escribo código nuevo — también puedo diagnosticar y resolver problemas de rendimiento en sistemas existentes.
+This shows I can diagnose and fix performance problems in existing systems, not just write new code. I used JFR to profile, identified the GC bottleneck, and executed a gradual migration without breaking compatibility. That's the kind of work that separates a senior from a mid-level engineer.
 
 ---
 

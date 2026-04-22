@@ -16,7 +16,7 @@
 
 ## Mensajería
 
-**Apache Kafka**: Incorporado en 2024 para arquitectura event-driven en Scotiabank/Image Maker. Conozco producers, consumers, consumer groups, tópicos, particiones, y patterns como Saga y outbox pattern.
+**Apache Kafka**: Arquitectura event-driven en Scotiabank/Image Maker. Manejo técnico del broker, consumer groups, particiones, gestión de fallos y patrón Saga. Actualmente utilizando Schema Registry con esquemas Avro en proceso de optimización.
 
 ## Cloud
 
@@ -27,7 +27,7 @@
 - DynamoDB SDK v2: operaciones CRUD, GSI, design de tabla single-table
 - RDS: PostgreSQL administrado
 
-**Azure**: Certificación AZ-900. Uso de Azure DevOps (pipelines, boards, repos). No tengo experiencia profunda en servicios de compute Azure, pero entiendo la plataforma.
+**Azure**: Cursé preparación para AZ-900. Uso de Azure DevOps (pipelines, boards, repos). No tengo experiencia profunda en servicios de compute Azure, pero entiendo la plataforma.
 
 ## DevOps y CI/CD
 
@@ -73,7 +73,13 @@
 
 **MySQL**: Uso en proyectos anteriores.
 
-**Oracle 11g / PL/SQL**: Experiencia profunda en Open Systems — stored procedures, functions, triggers, optimización.
+**Oracle 11g / PL/SQL**: Experiencia en Open Systems — stored procedures, functions, triggers, optimización de queries.
+
+**Cassandra**: Repositorio de ingesta de datos para pipelines de machine learning y data lakes; aprovecho su modelo de escritura intensiva y alta disponibilidad para este caso de uso.
+
+**Redis**: Gestión de datos de sesión y reducción de latencia entre servicios; lo aplico cuando los datos tienen vida corta y se prestan para este patrón de diseño.
+
+**MongoDB**: Experiencia en proyectos propios y cursos — manejo de documentos como estructuras JSON, consultas y modelado de esquema flexible.
 
 ## Herramientas de desarrollo
 
@@ -82,6 +88,11 @@
 **Git**: Workflows con GitFlow y trunk-based development. Rebase, cherry-pick, resolución de conflictos complejos.
 
 **Maven**: Gestión de dependencias, multi-module projects, plugins personalizados.
+
+## Frontend (soporte y proyectos propios)
+
+**Angular**: Soporte en cambios de frontend en Globant/Disney, con pruebas unitarias de componentes.
+**JavaScript**: Uso en contexto de soporte frontend y proyectos propios.
 
 ## Explorando (proyectos personales)
 

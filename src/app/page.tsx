@@ -5,10 +5,10 @@ import { useState, useRef, useEffect, KeyboardEvent } from 'react';
 type Message = { role: 'user' | 'assistant'; content: string };
 
 const SUGGESTIONS = [
-  '¿Cuántos años de experiencia tienes con Java?',
-  'What AWS services have you worked with?',
-  '¿Puedes trabajar con arquitecturas IoT?',
-  '¿Estás disponible para trabajo en Europa?',
+  '¿Qué hiciste en Disney Wallet?',
+  '¿Cómo liderabas el equipo en Scotiabank?',
+  'What was your toughest technical challenge?',
+  '¿Qué mejoró la migración a Java 21?',
 ];
 
 export default function Home() {

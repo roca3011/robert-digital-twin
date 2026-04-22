@@ -8,14 +8,15 @@
 Trabajo en el equipo que mantiene y evoluciona los servicios de wallet de Disney, procesando millones de transacciones diarias. El sistema maneja pagos, créditos y activos digitales para plataformas como Disney+, parks y experiencias físicas.
 
 Responsabilidades y logros:
-- Diseño e implementación de APIs REST de alto rendimiento con Java 21 y Spring Boot 3
-- Aplicación de Clean Architecture para mantener el dominio desacoplado de la infraestructura
-- Trabajo con AWS: EC2, ECS (containers), S3, DynamoDB SDK v2, RDS
+- Integración del método de pago ACH en la billetera de los parques de atracción Disney: diseño e implementación de servicios REST que se comunican con el proveedor ACH y exponen los métodos de pago en la wallet del usuario
+- Aplicación estricta de Clean Architecture y clean code para mantener el dominio desacoplado de la infraestructura
+- Pruebas unitarias, de integración y funcionales como parte del ciclo de desarrollo; apoyo en pruebas de performance para validar SLAs antes de cada release
+- Soporte en cambios de frontend con JavaScript y Angular, incluyendo pruebas unitarias de componentes
 - Pipelines CI/CD con GitHub Actions — cero deployments manuales
-- Participación en decisiones de arquitectura del equipo distribuido (inglés como idioma del equipo)
+- Trabajo 100% en inglés: reuniones técnicas, code reviews y comunicación diaria con el cliente Disney
 - Mantenimiento de SLAs de disponibilidad en sistema crítico de pagos
 
-**Stack**: Java 21, Spring Boot 3, Spring Data JPA, AWS EC2/ECS/S3/DynamoDB/RDS, Docker, GitHub Actions, Clean Architecture
+**Stack**: Java 21, Spring Boot 3, Spring Data JPA, AWS EC2/ECS/S3/DynamoDB/RDS, Docker, GitHub Actions, Angular, JavaScript, Clean Architecture
 
 ---
 
@@ -24,16 +25,16 @@ Responsabilidades y logros:
 **Rol**: Technical Leader / Senior Java Developer
 **Proyecto**: Sistema de gestión de procesos de seguros — diseñado desde cero
 
-Este fue el proyecto donde más crecí. Entré como senior developer y terminé como technical leader del equipo. Diseñé la arquitectura del sistema de seguros de Scotiabank desde cero.
+Este fue el proyecto donde más crecí. Entré como senior developer y terminé como technical leader del equipo. Diseñé la arquitectura del sistema de seguros de Scotiabank desde cero, con foco en la parte operacional del negocio.
 
 Responsabilidades y logros:
-- Diseño de arquitectura basada en Domain-Driven Design (DDD) y event-driven patterns
-- Liderazgo técnico de un equipo de 5 developers (code reviews, definición de estándares, mentoring)
-- Implementación de Apache Kafka para comunicación asíncrona entre microservicios
-- Integración con sistemas legacy del banco usando Feign Client y contratos OpenAPI
+- Diseño de arquitectura de microservicios con DDD aplicado a los procesos operacionales del negocio asegurador (cotización, emisión, siniestros, pagos); mi fortaleza fue la parte técnica: estructura de microservicios con Clean Architecture, resiliencia, e independencia de modelos en BD con redundancia de datos
+- Las decisiones de diseño se abordaban entre el equipo de líderes técnicos, apoyándome en ejemplos de industrias similares y mejores prácticas por tecnología; los conceptos de dominio se afinaban en sesiones de lluvia de ideas con el equipo de negocio
+- Liderazgo técnico de un equipo de 5 developers: code reviews, definición de estándares, mentoring
+- Implementación de Apache Kafka para comunicación asíncrona event-driven entre microservicios
+- Integración con sistemas legacy del banco usando Feign Client y contratos OpenAPI-first
 - Azure DevOps para CI/CD y gestión del backlog técnico
-- SonarQube para quality gates — logré reducir deuda técnica heredada en 60%
-- Coordinación con product owners del banco para traducir requisitos de negocio en diseño técnico
+- SonarQube para quality gates — reducción de deuda técnica heredada en 60%
 
 **Stack**: Java 17, Spring Boot 2/3, Spring Cloud, Apache Kafka, DDD, Feign Client, Azure DevOps, SonarQube, Docker, Kubernetes
 
@@ -41,7 +42,7 @@ Responsabilidades y logros:
 
 ## Samtel → Cliente: Banco Santander (Oct 2021 – Sep 2022)
 
-**Rol**: Java Developer (en paralelo con Image Maker, contrato independiente)
+**Rol**: Java Developer
 **Proyecto**: Servicios backend para banca digital
 
 Trabajo paralelo como contractor. Desarrollo de microservicios para el backend de banca digital de Santander.
@@ -60,13 +61,13 @@ Responsabilidades:
 **Rol**: Java Developer
 **Cliente principal**: SURA (aseguradora)
 
-Mi primer rol en una consultora de alta exigencia técnica. Ceiba es conocida en Colombia por sus estándares de calidad. Aquí aprendí las bases de Clean Architecture y testing serio.
+Mi primer rol en una consultora de alta exigencia técnica. Ceiba es conocida en Colombia por sus estándares de calidad. Aquí aprendí las bases de Clean Architecture, clean code y testing serio.
 
 Responsabilidades:
-- Desarrollo backend para procesos internos de SURA
+- Participación en la migración del monolito de seguros de SURA hacia arquitectura de microservicios, aplicando Clean Architecture y clean code
 - Primeros pasos con AWS (S3, EC2 básico)
 - Spring Batch para procesamiento masivo de datos de pólizas
-- Estándares de código y arquitectura heredados del equipo senior
+- Estándares de código y arquitectura guiados por el equipo senior
 
 **Stack**: Java 11, Spring Boot, Spring Batch, AWS básico, JUnit 5
 

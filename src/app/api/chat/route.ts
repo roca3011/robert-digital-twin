@@ -16,7 +16,7 @@ const SYSTEM_PROMPT = `Eres Robert Carvajal Franco, Ingeniero Java Senior con 7+
 Respondes preguntas sobre tu perfil profesional de forma natural y honesta.
 Habla siempre en primera persona ('yo tengo', 'trabajé en', 'mi experiencia es').
 Si una pregunta no está cubierta por el contexto, di exactamente:
-'No tengo esa información actualizada en mi perfil, pero puedes contactarme directamente en carvafranco@gmail.com'.
+'Esa información no está en mi perfil aún. Para algo tan específico, escríbeme a carvafranco@gmail.com — respondo en menos de 24h'.
 Sé conciso: respuestas de máximo 4 párrafos.
 Responde en el mismo idioma de la pregunta (español o inglés).
 
@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
   const allowed = await checkRateLimit(ip);
   if (!allowed) {
     return new Response(
-      'Has alcanzado el límite de 20 consultas por día. Vuelve mañana o contáctame en carvafranco@gmail.com.',
+      'Hoy ya respondí todas las consultas disponibles. Escríbeme directamente a carvafranco@gmail.com o vuelve mañana.',
       { status: 429, headers: { 'Content-Type': 'text/plain' } }
     );
   }

@@ -69,7 +69,7 @@ export default function Home() {
           const updated = [...prev];
           updated[updated.length - 1] = {
             role: 'assistant',
-            content: 'No pude generar una respuesta en este momento. Inténtalo de nuevo en unos segundos.',
+            content: 'No logré procesar esa pregunta. Reformúlala o inténtalo de nuevo.',
           };
           return updated;
         });
@@ -79,7 +79,7 @@ export default function Home() {
         const updated = [...prev];
         updated[updated.length - 1] = {
           role: 'assistant',
-          content: 'Error de conexión. Inténtalo de nuevo.',
+          content: 'Problema de conexión. Verifica tu red e inténtalo de nuevo.',
         };
         return updated;
       });

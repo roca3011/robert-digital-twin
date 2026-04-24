@@ -6,6 +6,11 @@
 
 **Mi rol**: Senior Engineer en el equipo core de wallet services.
 
+**Escala del sistema** (datos públicos Disney 2024):
+- 145 millones de visitantes anuales en parques Disney globales
+- 122 millones de suscriptores Disney+
+- La wallet centraliza pagos, créditos y activos digitales para todas estas plataformas simultáneamente
+
 **Desafíos técnicos**:
 - Volumen: millones de transacciones diarias con requerimientos de consistencia fuerte
 - Latencia: operaciones de wallet deben ser sub-100ms en el percentil 99
@@ -39,7 +44,8 @@ In English: My toughest challenge was ensuring consistency between the external 
 **Mi rol**: Empecé como senior developer y terminé como Technical Leader del proyecto.
 
 **Lo que diseñé desde cero**:
-- Arquitectura de microservicios basada en DDD con bounded contexts claramente definidos: `cotizacion`, `emision`, `siniestros`, `pagos`
+- 5 microservicios con bounded contexts definidos por DDD: `cotizacion`, `emision`, `siniestros`, `pagos`, `notificaciones`
+- 5 facades para reestructurar y desacoplar el flujo operacional entre servicios y sistemas legacy del banco
 - Sistema event-driven con Kafka: cuando se emite una póliza, los servicios de `pagos` y `notificaciones` reaccionan al evento sin acoplamiento directo
 - API Gateway que unifica los microservicios hacia el frontend del banco
 

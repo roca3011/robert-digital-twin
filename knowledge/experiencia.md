@@ -28,7 +28,7 @@ Responsabilidades y logros:
 Este fue el proyecto donde más crecí. Entré como senior developer y terminé como technical leader del equipo. Diseñé la arquitectura del sistema de seguros de Scotiabank desde cero, con foco en la parte operacional del negocio.
 
 Responsabilidades y logros:
-- Diseño de arquitectura de microservicios con DDD aplicado a los procesos operacionales del negocio asegurador (cotización, emisión, siniestros, pagos); mi fortaleza fue la parte técnica: estructura de microservicios con Clean Architecture, resiliencia, e independencia de modelos en BD con redundancia de datos
+- Diseño de arquitectura de 5 microservicios + 5 facades con DDD aplicado a los procesos operacionales del negocio asegurador (cotización, emisión, siniestros, pagos, notificaciones); mi fortaleza fue la parte técnica: estructura de microservicios con Clean Architecture, resiliencia, e independencia de modelos en BD con redundancia de datos
 - Las decisiones de diseño se abordaban entre el equipo de líderes técnicos, apoyándome en ejemplos de industrias similares y mejores prácticas por tecnología; los conceptos de dominio se afinaban en sesiones de lluvia de ideas con el equipo de negocio
 - Liderazgo técnico de un equipo de 5 developers: code reviews, definición de estándares, mentoring
 - Implementación de Apache Kafka para comunicación asíncrona event-driven entre microservicios
@@ -40,10 +40,10 @@ Responsabilidades y logros:
 
 ---
 
-## Samtel → Cliente: Banco Santander (Oct 2021 – Sep 2022)
+## Samtel → Cliente: Banco Santander España (Oct 2021 – Sep 2022)
 
 **Rol**: Java Developer
-**Proyecto**: Servicios backend para banca digital
+**Proyecto**: Servicios backend para banca digital — Banco Santander España
 
 Trabajo paralelo como contractor. Desarrollo de microservicios para el backend de banca digital de Santander.
 

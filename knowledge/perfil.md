@@ -44,3 +44,19 @@ Mi rango de aspiración salarial es entre 48.000 y 55.000 euros brutos anuales, 
 - Responsabilidad: si firmo un diseño, me hago cargo de que funcione
 - Mejora continua: tengo proyectos side para explorar tecnologías (Next.js, Supabase, IA)
 - Pragmatismo: el mejor código es el que resuelve el problema, no el más sofisticado
+
+## English Summary — Profile & Availability
+
+I'm Robert Carvajal Franco, Senior Java Engineer with 7+ years specializing in backend development and microservices architecture. Based in Zaragoza, Spain.
+
+**Work permit**: I hold a valid Spanish work permit (cuenta ajena). Changing employers requires an administrative process (~20 working days) — the new employer notifies the immigration office, which verifies requirements within one month. No visa sponsorship needed anywhere in the EU.
+
+**Availability**: approximately 20 working days, subject to work permit transfer process.
+
+**Work preferences**: Remote-first, open to hybrid in Spain or Europe, open to EU relocation for the right project.
+
+**English level**: B2 — I work daily in English at Globant/Disney: technical meetings, code reviews, documentation, and direct client communication.
+
+**Salary expectation**: €48,000–€55,000 gross per year depending on role, responsibilities, and benefits.
+
+**What I look for**: real code reviews, testing as a first-class practice, systems at real scale, technical autonomy within my domain, and a team where architecture decisions actually matter.

@@ -101,3 +101,19 @@ This shows I can diagnose and fix performance problems in existing systems, not 
 **Estado actual**: Beta con usuarios activos. Funcionalidades: tracking de entrenamientos, progresión de peso, estadísticas semanales.
 
 **Lo interesante técnicamente**: Este proyecto es donde aprendí RAG + embeddings — el mismo stack que estoy usando en este portfolio digital que estás viendo ahora mismo.
+
+---
+
+## English Summary — Key Projects
+
+**Disney Wallet (2024–present)**
+Senior Engineer on Disney's centralized wallet platform. Integrated ACH payment method into Disney parks wallet — designed REST services communicating with ACH provider, enabling payment method display in the user wallet. Scale: 145M park visitors/year + 122M Disney+ subscribers. Full English environment with Disney client. Stack: Java 21, Spring Boot 3, AWS, Angular.
+
+**Scotiabank Insurance Platform (2020–2024)**
+Grew from Senior Developer to Technical Leader. Designed full microservices architecture from scratch: 5 microservices + 5 facades using DDD. Event-driven with Kafka — when a policy is issued, payment and notification services react without direct coupling. Result: policy issuance reduced from days to minutes. Stack: Java 17, Spring Boot 3, Kafka, Kubernetes.
+
+**Java 11→21 Migration with ZGC Generational**
+Migrated a batch processing system from Java 11 to Java 21. Used JFR profiling to identify GC bottlenecks. Result: GC pauses from 2–4 seconds to <1ms at p99. Nightly batch runtime from 4 hours to 2.5 hours. Demonstrates ability to diagnose and fix performance problems in existing systems.
+
+**Fitness App — Strangler Fig Migration**
+Migrated a no-code app (Base44) to Supabase + Next.js using Strangler Fig pattern — replacing modules one by one without downtime. Active users throughout the migration. Learned RAG + embeddings here, same stack powering this AI portfolio.

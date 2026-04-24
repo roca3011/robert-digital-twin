@@ -86,3 +86,22 @@ Responsabilidades:
 - Primeras integraciones con sistemas externos via SOAP/REST
 
 **Stack**: Java 8, Spring Framework, PL/SQL Oracle 11g, SOAP
+
+---
+
+## English Summary — Work Experience
+
+**Globant → Disney (Sep 2024–present) | Senior Java Engineer**
+Building high-performance REST APIs for Disney Wallet — centralizing payments, credits and digital assets across platforms serving 145M park visitors and 122M Disney+ subscribers. Integrated ACH payment method into the parks wallet. Working 100% in English with the Disney client. Stack: Java 21, Spring Boot 3, AWS, Docker, Angular.
+
+**Imagemaker → Scotiabank (Sep 2020–Aug 2024) | Technical Leader**
+Designed from scratch a microservices platform for Scotiabank Colombia's insurance operations: 5 microservices + 5 facades using DDD, event-driven architecture with Kafka. Led a team of 5 developers. Reduced insurance policy issuance from days to minutes. Stack: Java 17, Spring Boot 3, Kafka, Kubernetes, Azure DevOps.
+
+**Samtel → Banco Santander España (Oct 2021–Sep 2022) | Java Developer**
+Backend microservices for Banco Santander Spain's digital banking platform. REST APIs, unit and integration testing, Kubernetes deployments. Stack: Java 11, Spring Boot, JUnit 5, Kubernetes.
+
+**Ceiba Software → SURA (Jul 2019–Sep 2020) | Java Developer**
+Participated in migration from monolith to microservices for SURA insurance company. Applied Clean Architecture and clean code standards. Stack: Java 11, Spring Boot, Spring Batch, AWS.
+
+**Open Systems (2017–2019) | Junior/Semi-Senior Java Developer**
+Financial and enterprise sector in Colombia. Traditional Spring Framework, Oracle PL/SQL, SOAP integrations. Stack: Java 8, Spring Framework, Oracle 11g.

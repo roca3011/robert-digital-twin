@@ -193,7 +193,7 @@ export default function Home() {
           </button>
         </div>
         <p className="text-center text-[10px] text-white/20">
-          Powered by Gemini ·{' '}
+          Powered by Groq ·{' '}
           <a
             href="https://github.com/carvafranco/robert-digital-twin"
             target="_blank"
